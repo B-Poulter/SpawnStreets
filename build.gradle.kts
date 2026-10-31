@@ -1,7 +1,6 @@
 plugins {
     id("java-library")
-    // Das run-paper Plugin bleibt gleich, da es auch Folia ausführen kann
-    id("xyz.jpenilla.run-paper") version "3.1.0"
+    id("xyz.jpenilla.run-paper") version "3.0.2"
 }
 
 repositories {
@@ -10,21 +9,18 @@ repositories {
 }
 
 dependencies {
-    // GEÄNDERT: Nutze die folia-api anstelle der paper-api
-    compileOnly("dev.folia:folia-api:26.2.build.+")
+    compileOnly("dev.folia:folia-api:1.21.4-R0.1-SNAPSHOT")
 }
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(25)
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
 }
+
+runPaper.folia.registerTask()
 
 tasks {
     runServer {
-        // GEÄNDERT: Sagt dem Plugin, dass es Folia statt Paper herunterladen soll
-        folia.serverJar()
-
-        // Konfiguriere die Minecraft-Version
-        minecraftVersion("26.2")
+        minecraftVersion("1.21.1")
         jvmArgs("-Xms2G", "-Xmx2G")
     }
 
