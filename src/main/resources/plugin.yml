@@ -1,0 +1,6 @@
+name: SpawnStreets
+version: '${version}'
+
+main: org.main.spawnStreets.SpawnStreets
+api-version: '26.2'
+load: POSTWORLD
